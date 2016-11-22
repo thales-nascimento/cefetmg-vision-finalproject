@@ -1,6 +1,7 @@
 #include "color.h"
 #include "bgsubtractor.h"
 #include "filteredcapture.h"
+#include "filter.h"
 #include "opencv2/videoio.hpp"
 #include <opencv2/highgui.hpp>
 #include <opencv2/video.hpp>
@@ -15,12 +16,23 @@ const char *FOREGROUND_WINDOW_NAME = "Foreground";
 const char *HEATMAP_WINDOW_NAME = "Heatmap";
 
 void erro(){
-	cerr <<"Usage: ./program [-colorscale hot|jet ] [-play] videofile" << endl;
+	cerr <<"Usage: ./program [-colorscale hot|jet ] [-filter sigma|gaussian ] [-play] videofile" << endl;
 	exit(EXIT_FAILURE);
+}
+
+void toLower(char* str){
+	while(*str){
+		char c = *str;
+		if(c >= 'A' && c <= 'Z'){
+			*str -= 'A'-'a';
+		}
+		++str;
+	}
 }
 
 int main(int argc, char* argv[]){
 	int colorscale = JET;
+	int filter = NONE;
 	char *videoPath;
 	bool slowPlay = false;
 	
@@ -34,15 +46,29 @@ int main(int argc, char* argv[]){
 			if(i == argc-1){
 				erro();
 			}
-			if(strcmp(argv[i+1],"hot") == 0 || strcmp(argv[i+1],"HOT") == 0){
+			i+=1;
+			toLower(argv[i]);
+			if(strcmp(argv[i],"hot") == 0){
 				colorscale = HOT;
-			} else if(strcmp(argv[i+1],"jet") == 0 || strcmp(argv[i+1],"JET") == 0){
+			} else if(strcmp(argv[i],"jet") == 0){
 				colorscale = JET;
 			} else {
 				erro();
 			}
-			i+=1;
 		
+		} else if(strcmp(argv[i], "-filter") == 0){
+			if(i == argc-1){
+				erro();
+			}
+			i+=1;
+			toLower(argv[i]);
+			if(strcmp(argv[i], "sigma") == 0){
+				filter = SIGMA;
+			} else if(strcmp(argv[i], "gaussian") == 0){
+				filter = GAUSSIAN;
+			} else {
+				erro();
+			}
 		} else if(strcmp(argv[i], "-play") == 0){
 			slowPlay = true;
 		
@@ -59,6 +85,10 @@ int main(int argc, char* argv[]){
 		printf("Unable to open video file: %s\n", videoPath);
 		exit(EXIT_FAILURE);
 	}
+	if(filter != NONE){
+		capture.attachFilter(filter);
+	}
+	
 	if(slowPlay){
 		namedWindow(ORIGINAL_WINDOW_NAME);
 		namedWindow(FOREGROUND_WINDOW_NAME);
@@ -70,8 +100,6 @@ int main(int argc, char* argv[]){
 		imshow(HEATMAP_WINDOW_NAME, colorful);
 	
 	} else {
-		capture = FilteredCapture(videoPath);
-		capture.attachFilter(GAUSSIAN);
 		Mat fromsilent = processVideoSilently(&capture, createBackgroundSubtractorMOG2());
 		capture.release();
 		Mat colorful = applyColor(fromsilent, colorscale);

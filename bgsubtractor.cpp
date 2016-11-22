@@ -1,4 +1,5 @@
 #include "bgsubtractor.h"
+#include <time.h>
 
 Mat processVideoSilently(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor){
 	Mat frame;
@@ -40,9 +41,12 @@ Mat processVideo(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor, 
 	unsigned maxValue = 0;
 	int keyboard;
 	bool first = true;
+	clock_t start, end;
+	double elapsed;
 	
 	bool printed = false;
 	while( (char)keyboard != 'q' && (char)keyboard != 27 && (char)keyboard != 'p' && capture->read(frame)){
+		start = clock();
 		bgSubtractor->apply(frame, fgMask);
 		if(first){
 			acumulator = Mat::zeros(fgMask.rows, fgMask.cols, CV_32SC1);
@@ -64,7 +68,9 @@ Mat processVideo(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor, 
 		imshow(foregroundName, fgMask);
 		imshow(heatmapName, heatmap);
 		
-		keyboard = waitKey(0);
+		end = clock();
+		elapsed = double(end - start)/ CLOCKS_PER_SEC;
+		keyboard = waitKey(max(1.0,30.0-elapsed));
 	}
 	
 	if( (char)keyboard == 'q' || (char)keyboard == 27){
