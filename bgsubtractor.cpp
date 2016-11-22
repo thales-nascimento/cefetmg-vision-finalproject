@@ -1,15 +1,15 @@
 #include "bgsubtractor.h"
 
-Mat processVideoSilently(VideoCapture& capture, Ptr<BackgroundSubtractor> bgSubtractor){
+Mat processVideoSilently(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor){
 	Mat frame;
 	Mat fgMask;
 	Mat acumulator;
 	Mat heatmap;
 	unsigned maxValue = 0;
+	int i = 0;
 
-	capture.read(frame);
-	bgSubtractor->apply(frame, fgMask);
-	acumulator = Mat::zeros(fgMask.rows, fgMask.cols, CV_32SC1);
+	capture->read(frame);
+	acumulator = Mat::zeros(frame.rows, frame.cols, CV_32SC1);
 	
 	do{
 		bgSubtractor->apply(frame, fgMask);
@@ -22,15 +22,17 @@ Mat processVideoSilently(VideoCapture& capture, Ptr<BackgroundSubtractor> bgSubt
 				maxValue = max(maxValue, a[col]);
 			}
 		}
-		
-	}while(capture.read(frame));
+		printf("\r%d", ++i);
+		fflush(stdout);
+		printf("\r      ");
+	}while(capture->read(frame));
 	
 	acumulator.convertTo(heatmap, CV_32FC1, 1.0/maxValue);
 	return heatmap;
 
 }
 
-Mat processVideo(VideoCapture& capture, Ptr<BackgroundSubtractor> bgSubtractor, string originalName, string foregroundName, string heatmapName) {
+Mat processVideo(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor, string originalName, string foregroundName, string heatmapName) {
 	Mat frame;
 	Mat fgMask;
 	Mat acumulator;
@@ -40,7 +42,7 @@ Mat processVideo(VideoCapture& capture, Ptr<BackgroundSubtractor> bgSubtractor, 
 	bool first = true;
 	
 	bool printed = false;
-	while( (char)keyboard != 'q' && (char)keyboard != 27 && (char)keyboard != 'p' && capture.read(frame)){
+	while( (char)keyboard != 'q' && (char)keyboard != 27 && (char)keyboard != 'p' && capture->read(frame)){
 		bgSubtractor->apply(frame, fgMask);
 		if(first){
 			acumulator = Mat::zeros(fgMask.rows, fgMask.cols, CV_32SC1);
@@ -62,7 +64,7 @@ Mat processVideo(VideoCapture& capture, Ptr<BackgroundSubtractor> bgSubtractor, 
 		imshow(foregroundName, fgMask);
 		imshow(heatmapName, heatmap);
 		
-		keyboard = waitKey(30);
+		keyboard = waitKey(0);
 	}
 	
 	if( (char)keyboard == 'q' || (char)keyboard == 27){

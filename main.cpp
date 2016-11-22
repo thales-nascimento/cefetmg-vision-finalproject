@@ -1,5 +1,6 @@
 #include "color.h"
 #include "bgsubtractor.h"
+#include "filteredcapture.h"
 #include "opencv2/videoio.hpp"
 #include <opencv2/highgui.hpp>
 #include <opencv2/video.hpp>
@@ -53,7 +54,7 @@ int main(int argc, char* argv[]){
 	namedWindow(HEATMAP_WINDOW_NAME);
 
 
-	VideoCapture capture(videoPath);
+	FilteredCapture capture(videoPath);
 	if(!capture.isOpened()){
 		printf("Unable to open video file: %s\n", videoPath);
 		exit(EXIT_FAILURE);
@@ -61,7 +62,7 @@ int main(int argc, char* argv[]){
 	if(slowPlay){
 		namedWindow(ORIGINAL_WINDOW_NAME);
 		namedWindow(FOREGROUND_WINDOW_NAME);
-		Mat fromvideo = processVideo(capture, createBackgroundSubtractorMOG2(), ORIGINAL_WINDOW_NAME, FOREGROUND_WINDOW_NAME, HEATMAP_WINDOW_NAME); 
+		Mat fromvideo = processVideo(&capture, createBackgroundSubtractorMOG2(), ORIGINAL_WINDOW_NAME, FOREGROUND_WINDOW_NAME, HEATMAP_WINDOW_NAME); 
 		capture.release();
 		cvDestroyWindow(ORIGINAL_WINDOW_NAME);
 		cvDestroyWindow(FOREGROUND_WINDOW_NAME);
@@ -69,8 +70,9 @@ int main(int argc, char* argv[]){
 		imshow(HEATMAP_WINDOW_NAME, colorful);
 	
 	} else {
-		capture = VideoCapture(videoPath);
-		Mat fromsilent = processVideoSilently(capture, createBackgroundSubtractorMOG2());
+		capture = FilteredCapture(videoPath);
+		capture.attachFilter(GAUSSIAN);
+		Mat fromsilent = processVideoSilently(&capture, createBackgroundSubtractorMOG2());
 		capture.release();
 		Mat colorful = applyColor(fromsilent, colorscale);
 		imshow(HEATMAP_WINDOW_NAME, colorful);
