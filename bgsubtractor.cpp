@@ -4,21 +4,21 @@
 Mat processVideoSilently(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor){
 	Mat frame;
 	Mat fgMask;
-	Mat acumulator;
+	Mat accumulator;
 	Mat heatmap;
 	unsigned maxValue = 0;
 	int i = 0;
 
 	capture->read(frame);
-	acumulator = Mat::zeros(frame.rows, frame.cols, CV_32SC1);
+	accumulator = Mat::zeros(frame.rows, frame.cols, CV_32SC1);
 	
 	do{
 		bgSubtractor->apply(frame, fgMask);
 		
-		for(int row=0; row < acumulator.rows; ++row){
+		for(int row=0; row < accumulator.rows; ++row){
 			uchar *f = fgMask.ptr(row);
-			unsigned *a = (unsigned*)acumulator.ptr(row);
-			for(int col = 0; col < acumulator.cols; ++col){
+			unsigned *a = (unsigned*)accumulator.ptr(row);
+			for(int col = 0; col < accumulator.cols; ++col){
 				a[col] += f[col];
 				maxValue = max(maxValue, a[col]);
 			}
@@ -28,7 +28,7 @@ Mat processVideoSilently(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubt
 		printf("\r      ");
 	}while(capture->read(frame));
 	
-	acumulator.convertTo(heatmap, CV_32FC1, 1.0/maxValue);
+	accumulator.convertTo(heatmap, CV_32FC1, 1.0/maxValue);
 	return heatmap;
 
 }
@@ -36,7 +36,7 @@ Mat processVideoSilently(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubt
 Mat processVideo(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor, string originalName, string foregroundName, string heatmapName) {
 	Mat frame;
 	Mat fgMask;
-	Mat acumulator;
+	Mat accumulator;
 	Mat heatmap;
 	unsigned maxValue = 0;
 	int keyboard;
@@ -49,20 +49,20 @@ Mat processVideo(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor, 
 		start = clock();
 		bgSubtractor->apply(frame, fgMask);
 		if(first){
-			acumulator = Mat::zeros(fgMask.rows, fgMask.cols, CV_32SC1);
+			accumulator = Mat::zeros(fgMask.rows, fgMask.cols, CV_32SC1);
 			first = false;
 		}
 		
-		for(int row=0; row < acumulator.rows; ++row){
+		for(int row=0; row < accumulator.rows; ++row){
 			uchar *f = fgMask.ptr(row);
-			unsigned *a = (unsigned*)acumulator.ptr(row);
-			for(int col = 0; col < acumulator.cols; ++col){
+			unsigned *a = (unsigned*)accumulator.ptr(row);
+			for(int col = 0; col < accumulator.cols; ++col){
 				a[col] += f[col];
 				maxValue = max(maxValue, a[col]);
 			}
 		}
 		
-		acumulator.convertTo(heatmap, CV_32FC1, 1.0/(maxValue));
+		accumulator.convertTo(heatmap, CV_32FC1, 1.0/(maxValue));
 		
 		imshow(originalName, frame);
 		imshow(foregroundName, fgMask);
