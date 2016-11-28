@@ -4,16 +4,16 @@ all: color.o bgsubtractor.o filteredcapture.o filter.o main.cpp
 testcolorscale: color.o testcolorscale.cpp
 	g++ -std=c++11 testcolorscale.cpp color.o -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_imgcodecs -otestcolorscale
 
-color.o: color.cpp
+color.o: color.cpp color.h
 	g++ -std=c++11 -c color.cpp
 
-bgsubtractor.o: bgsubtractor.cpp
+bgsubtractor.o: bgsubtractor.cpp bgsubtractor.h
 	g++ -std=c++11 -c bgsubtractor.cpp 
 
-filteredcapture.o: filteredcapture.cpp
+filteredcapture.o: filteredcapture.cpp filteredcapture.h
 	g++ -std=c++11 -c filteredcapture.cpp
 
-filter.o: filter.cpp
+filter.o: filter.cpp filter.h
 	g++ -std=c++11 -c filter.cpp
 
 clean:
