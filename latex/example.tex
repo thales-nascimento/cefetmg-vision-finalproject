@@ -1,31 +1,8 @@
 \documentclass[10pt, conference]{IEEEtran}
 
-
-% *** CITATION PACKAGES ***
-%
-%\usepackage{cite}
-% cite.sty was written by Donald Arseneau
-% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
-% \cite{} output to follow that of IEEE. Loading the cite package will
-% result in citation numbers being automatically sorted and properly
-% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
-% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
-% \cite will automatically add leading space, if needed. Use cite.sty's
-% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
-% cite.sty is already installed on most LaTeX systems. Be sure and use
-% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
-% not currently provide for hyperlinked citations.
-% The latest version can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
-% The documentation is contained in the cite.sty file itself.
-
-% *** GRAPHICS RELATED PACKAGES ***
-%
 \usepackage{subimages}
 \setfigdir{figs}
 
-% *** MATH PACKAGES ***
-%
 \usepackage[cmex10]{amsmath}
 % A popular package from the American Mathematical Society that provides
 % many useful and powerful commands for dealing with mathematics. If using
@@ -112,7 +89,6 @@
 % There should be no need to do such things with IEEEtran.cls V1.6 and later.
 % (Unless specifically asked to do so by the journal or conference you plan
 % to submit to, of course. )
-
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -190,50 +166,53 @@ Heatmap; Background subtraction;
 
 
 \section{Introduction}
+As análises de comportamento de clientes em lojas possuem grande valor para varejistas, empresas e organizações, já que podem ser utilizadas para aperfeiçoar suas estratégias de marketing, e ajudar os clientes nas tomadas de decisões. Algumas das análises realizadas por técnicas computacionais atualmente são feitas por meio de tecnologias que impõe algumas limitações, exigindo dispositivos acoplados ao cliente ou até mesmo identificações previamente definidas nos produtos de uma loja. Do mesmo modo, as ferramentas tecnológicas existentes ainda são pouco acessíveis, sendo compostas de soluções comerciais que exigem um investimento alto e consequentemente pouco exploradas.
+Este trabalho implementa um sistema baseado em visão computacional capaz de detectar clientes em lojas a fim de criar um mapa de calor para apoiar as análises de comportamento de clientes. Utilizando datasets disponvieis publicamente, fizemos uma prova de conceito para o sistema, e validamos os resutados.
+
 \subsection{Related work}
+O trabalho de Padua~\cite{padua2014sistema} desenvolve um sistema baseado em visão computacional para apoiar as análises tática e física no futsal. Em seu sistema foram utizadas as técnicas de subtração de fundo baseado em misturas gaussianas descritas em \cite{zivkovic2004improved} e operações morfológicas sobre imagens como descrito em \cite{haralick1987image}.
+
 \subsection{Technique overview}
 
 \section{Technical background}
 \subsection{Important concept}
-%
-An \emph{important concept} is a type of object:
-\begin{definition}[Important concept]
-Given this and that, an object $X$ is an important concept if it respects the following properties\ldots{}
+\begin{definition}[Image binarization]
+	Binarization is the conversion of a gray scale image to a two values image. There are many binarization formulas, we used the following:
+	\[
+		output(x,y) =
+	\begin{cases}
+		G_{max} & \text{if } input(x,y) > \text{threshold}\\
+		0 & \text{otherwise}
+	\end{cases}.
+	\]
+\end{definition}
+\begin{definition}[Gaussian filter]
+	The Gaussian Filter is a 2D convolution with a kernel defined by samples of the 2D Gauss function. This function is defined as follows:
+			$$ G_{\sigma,\mu_{x},\mu_{y}}(x,y)=\frac{1}{2\pi\sigma^{2}}
+			e^{\frac{(x-\mu_{x})^{2}}{2\sigma^{2}}}
+			e^{\frac{(y-\mu_{y})^{2}}{2\sigma^{2}}}.$$
+	
+\end{definition}
+\begin{definition}[Dilation]
+	Dilation is the morphological transformation which combines two sets using vector addition of set elements. Let A and B be subsets of image carrier $\Omega$. The dilation is defined as: $$A \oplus B=\{c\in\Omega|c=a+b \text{ for some }a\in A\text{  and }b \in B\}.$$
 \end{definition}
 
+\begin{definition}[Erosion]
+Erosion is the morphological dual to dilation.Let A and B be subsets of image carrier $\Omega$. The erosion is defined as: $$A \ominus B=\{x\in\Omega | x+b \in A \text{ for every }b\in B.$$
+\end{definition}
 
-%------------------------------------------------------------------------- 
-\subsection{Usual adaptation}
-%
-This concept has been used for applications similar to ours~\cite{Sibgrapi2015}, using the following formulation\ldots{}
+\begin{definition}[Opening]
+	
+%falar do background subtraction
+%falar das transformacoes morfologicas
 
-
-
-%==========================================
-\section{New technique or technique adaptation}
-\label{sec:technique}
-%
-Our technique aims at obtaining that result. It particularly suits to the problem since it is formulated as\ldots{}
-
-
-%------------------------------------------------------------------------- 
-\subsection{Formulation}
-
-
-%------------------------------------------------------------------------- 
-\subsection{Solution}
-
-
-%------------------------------------------------------------------------- 
-\subsection{Initialization and tuning}
-
-
-
-%==========================================
-\section{Implementation}
+\section{Methodology}
+\subsection{Dataset}
+\subsection{}
 %explicar como implementamos, mostrar codigos ou pseudocodigos
 
 \subsection{Result display}
+%mostrar um heatmap feito
 
 \subimages[htb]{Technique overview}{overview}{%
 	\subimage[First step]{.31}{sibgrapi}%
@@ -244,8 +223,7 @@ Our technique aims at obtaining that result. It particularly suits to the proble
 
 %==========================================
 \section{Experiments}
-%descrever o experimento, falar que fizemos uma detecao manual
-%comparar a subtracao manual com a subtracao automatica
+%descrever o experimento, falar que fizemos uma deteccao manual
 
 %==========================================
 \section{Results and Discussion}

@@ -21,9 +21,21 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{Sibgrapi2015}
-\emph{Proceedings of the XXVIII Conference on Graphics, Patterns and Images
-  (SIBGRAPI)}.\hskip 1em plus 0.5em minus 0.4em\relax Salvador, Brazil: {IEEE},
-  August 2015.
+\bibitem{padua2014sistema}
+F.~L.~C. P{\'a}dua and P.~H.~C. de~P{\'a}dua, ``Sistema de apoio {\`a}s
+  an{\'a}lises t{\'a}tica e f{\'\i}sica no futsal baseado em vis{\~a}o
+  computacional,'' in \emph{Semin{\'a}rio de Discentes dos Programas de
+  P{\'o}s-Gradua{\c{c}}{\~a}o Stricto Sensu}, 2014.
+
+\bibitem{zivkovic2004improved}
+Z.~Zivkovic, ``Improved adaptive gaussian mixture model for background
+  subtraction,'' in \emph{Pattern Recognition, 2004. ICPR 2004. Proceedings of
+  the 17th International Conference on}, vol.~2.\hskip 1em plus 0.5em minus
+  0.4em\relax IEEE, 2004, pp. 28--31.
+
+\bibitem{haralick1987image}
+R.~M. Haralick, S.~R. Sternberg, and X.~Zhuang, ``Image analysis using
+  mathematical morphology,'' \emph{IEEE transactions on pattern analysis and
+  machine intelligence}, no.~4, pp. 532--550, 1987.
 
 \end{thebibliography}

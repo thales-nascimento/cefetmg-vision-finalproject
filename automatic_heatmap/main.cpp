@@ -89,10 +89,13 @@ int main(int argc, char* argv[]){
 		capture.attachFilter(filter);
 	}
 	
+	Ptr<BackgroundSubtractorMOG2> bgSubtractor = createBackgroundSubtractorMOG2();
+	printf("history: %d\n", bgSubtractor->getHistory());
+	
 	if(slowPlay){
 		namedWindow(ORIGINAL_WINDOW_NAME);
 		namedWindow(FOREGROUND_WINDOW_NAME);
-		Mat fromvideo = processVideo(&capture, createBackgroundSubtractorMOG2(), ORIGINAL_WINDOW_NAME, FOREGROUND_WINDOW_NAME, HEATMAP_WINDOW_NAME); 
+		Mat fromvideo = processVideo(&capture, bgSubtractor, ORIGINAL_WINDOW_NAME, FOREGROUND_WINDOW_NAME, HEATMAP_WINDOW_NAME); 
 		capture.release();
 		cvDestroyWindow(ORIGINAL_WINDOW_NAME);
 		cvDestroyWindow(FOREGROUND_WINDOW_NAME);
@@ -100,7 +103,7 @@ int main(int argc, char* argv[]){
 		imshow(HEATMAP_WINDOW_NAME, colorful);
 	
 	} else {
-		Mat fromsilent = processVideoSilently(&capture, createBackgroundSubtractorMOG2());
+		Mat fromsilent = processVideoSilently(&capture, bgSubtractor);
 		capture.release();
 		Mat colorful = applyColor(fromsilent, colorscale);
 		imshow(HEATMAP_WINDOW_NAME, colorful);

@@ -1,7 +1,7 @@
 #include "bgsubtractor.h"
 #include <time.h>
 
-Mat openStructuringElement = getStructuringElement(MORPH_RECT, Size(2,3));
+Mat openStructuringElement = getStructuringElement(MORPH_RECT, Size(2,2));
 Mat closeStructuringElement = getStructuringElement(MORPH_RECT, Size(5,7));
 
 Mat processVideoSilently(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor){
@@ -12,12 +12,12 @@ Mat processVideoSilently(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubt
 	Mat heatmap;
 	unsigned maxValue = 0;
 	int i = 0;
-
+	
 	capture->read(frame);
 	accumulator = Mat::zeros(frame.rows, frame.cols, CV_32SC1);
 	
 	do{
-		bgSubtractor->apply(frame, fgMask);
+		bgSubtractor->apply(frame, binary);
 		threshold(fgMask, binary, 128, 255, THRESH_BINARY);
 		morphologyEx(binary, binary, MORPH_OPEN, openStructuringElement);
 		morphologyEx(binary, binary, MORPH_CLOSE, closeStructuringElement);
@@ -56,10 +56,10 @@ Mat processVideo(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor, 
 	
 	do{
 		start = clock();
-		bgSubtractor->apply(frame, fgMask);
+		bgSubtractor->apply(frame, binary);
 		threshold(fgMask, binary, 128, 255, THRESH_BINARY);
-		morphologyEx(binary, binary, MORPH_OPEN, openStructuringElement);
 		morphologyEx(binary, binary, MORPH_CLOSE, closeStructuringElement);
+		morphologyEx(binary, binary, MORPH_OPEN, openStructuringElement);
 		
 		for(int row=0; row < accumulator.rows; ++row){
 			uchar *f = binary.ptr(row);
