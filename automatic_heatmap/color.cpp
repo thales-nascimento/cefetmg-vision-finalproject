@@ -2,6 +2,7 @@
 
 Mat applyColor(Mat m,int type){
 	Mat n(m.size(), CV_32FC3);
+	
 	auto outputIt = n.begin<Vec3f>(), outputEnd = n.end<Vec3f>();
 	auto inputIt = m.begin<float>();
 	while(outputIt != outputEnd){
@@ -12,7 +13,7 @@ Mat applyColor(Mat m,int type){
 		if(type==JET){
 			const float alpha = 3.94f;
 			
-			if(i==0){
+			if(i<0.016f){
 				r=0;
 				b=0;
 				g=0;

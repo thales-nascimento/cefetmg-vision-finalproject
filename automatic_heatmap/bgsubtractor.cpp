@@ -14,7 +14,7 @@ Mat processVideoSilently(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubt
 	int i = 0;
 	
 	capture->read(frame);
-	accumulator = Mat::zeros(frame.rows, frame.cols, CV_32SC1);
+	accumulator = Mat::zeros(frame.size(), CV_32SC1);
 	
 	do{
 		bgSubtractor->apply(frame, fgMask);
@@ -52,7 +52,7 @@ Mat processVideo(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor, 
 	double elapsed;
 	
 	capture->read(frame);
-	accumulator = Mat::zeros(frame.rows, frame.cols, CV_32SC1);
+	accumulator = Mat::zeros(frame.size(), CV_32SC1);
 	
 	do{
 		start = clock();

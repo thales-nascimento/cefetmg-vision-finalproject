@@ -54,9 +54,15 @@ Heatmap; Background subtraction;
 
 \section{Introduction}
 As análises de comportamento de clientes em lojas possuem grande valor para varejistas, empresas e organizações, já que podem ser utilizadas para aperfeiçoar suas estratégias de marketing, e ajudar os clientes nas tomadas de decisões. Algumas das análises realizadas por técnicas computacionais atualmente são feitas por meio de tecnologias que impõe algumas limitações, exigindo dispositivos acoplados ao cliente ou até mesmo identificações previamente definidas nos produtos de uma loja. Do mesmo modo, as ferramentas tecnológicas existentes ainda são pouco acessíveis, sendo compostas de soluções comerciais que exigem um investimento alto e consequentemente pouco exploradas.
+
 Este trabalho implementa um sistema baseado em visão computacional capaz de detectar clientes em lojas a fim de criar um mapa de calor para apoiar as análises de comportamento de clientes. In order to build the heatmap, we segmented the image using background subtraction, and used morphological transformations to remove noise and correct small failures on the objects.
 
-\subsection{Related work}
+The remainder of this work is as follows: The second section presents the related work. The third section shows definitions of important concepts used in this work. The fourth section shows the proposed approach to solve the problem. The next section exposes the experimental results and the last section finishes with concluding remarks.
+
+\subsection{contribution}
+The contribution of this work is to present a simple method to detect people in an store environment and provide a heatmap to help understanding the client behavior in real time.
+
+\section{Related work}
 O trabalho de Padua~\cite{padua2014sistema} desenvolve um sistema baseado em visão computacional para apoiar as análises tática e física no futsal. Em seu sistema foram utizadas as técnicas de subtração de fundo baseado em misturas gaussianas descritas em \cite{zivkovic2004improved} e operações morfológicas sobre imagens como descrito em \cite{haralick1987image}.
 
 \section{Fundamentals}
@@ -103,14 +109,23 @@ The dataset used for the experiments was CAVIAR\footnote{http://homepages.inf.ed
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=12cm]{figs/diagrama_blocks}
-	\caption{pudim}
+	\caption{Block diagram of the system.}
 	\label{diagramablocos}
 \end{figure}
 
 \subsection{Gaussian filter}
 	For each frame of the input video we use a Gaussain filter to reduce noise. This filter produces an output image blurrier than the original image, but as we are not interested on small details, this effect has no relevance.
 \subsection{Background subtraction}
-	With each filtered frame, the system perform a background subtraction in order to segment the image and detect people in the scene. While there are many BS implementations, our application demands an adaptive technique that is able to update its background model when the scene changes permanently, for example when a customer removes a product from the shelve. For that reason, we used the BS technique proposed by Zivkovic~\cite{zivkovic2004improved}, which is implemented in OpenCV~\cite{opencv_library}. The parameters used for the algorithm were experimentally defined, according to the dataset used in order to better segment people on scene.
+	With each filtered frame, the system perform a background subtraction in order to segment the image and detect people in the scene. While there are many BS implementations, our application demands an adaptive technique that is able to update its background model when the scene changes permanently, for example when a customer removes a product from the shelve. For that reason, we used the BS technique proposed by Zivkovic~\cite{zivkovic2004improved}, which is implemented in OpenCV~\cite{opencv_library}.
+\subsection{Threshold}
+	The BS implementation we used deliver an image with the shadow pixels marked in gray, while the foreground is marked in white. The shadows are of no interest to our application, so they are removed with a threshold operation.
+\subsection{Morphological opening and closing}
+	In order to improve the detection capability, we apply morphological opening and closing\cite{haralick1987image} in the output of the threshold step. The first is used to remove small noise from the image, while the second is used to remove small holes on the detected objects.
+\subsection{Accumulation}
+	In this step we add the result of previous operation in an accumulator, for further generating a heatmap.
+	
+\subsection{Normalization and display}
+	If all frames were computed, the accumulator matrix is normalized in order to be in a displayable format \textit{i.e.} between 0 and 1, and then it is colorized for better viewing.
 
 \section{Experimental results}
 %descrever o experimento, falar que fizemos uma deteccao manual
