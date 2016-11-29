@@ -202,11 +202,18 @@ Erosion is the morphological dual to dilation.Let A and B be subsets of image ca
 \end{definition}
 
 \begin{definition}[Opening]
+The opening of image $B$ by structuring	element $K$ is denoted by $B \circ K$ and is defined as: $$B \circ K =(B \ominus K) \oplus K.$$
+\end{definition}
+
+\begin{definition}[Closing]
+The closing of image $B$ by structuring	element $K$ is denoted by $B \circ K$ and is defined as: $$B \circ K =(B \oplus K) \ominus K.$$
+\end{definition}
 	
 %falar do background subtraction
 %falar das transformacoes morfologicas
 
 \section{Methodology}
+
 \subsection{Dataset}
 \subsection{}
 %explicar como implementamos, mostrar codigos ou pseudocodigos
