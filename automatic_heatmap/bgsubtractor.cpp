@@ -17,7 +17,7 @@ Mat processVideoSilently(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubt
 	accumulator = Mat::zeros(frame.rows, frame.cols, CV_32SC1);
 	
 	do{
-		bgSubtractor->apply(frame, binary);
+		bgSubtractor->apply(frame, fgMask);
 		threshold(fgMask, binary, 128, 255, THRESH_BINARY);
 		morphologyEx(binary, binary, MORPH_OPEN, openStructuringElement);
 		morphologyEx(binary, binary, MORPH_CLOSE, closeStructuringElement);
@@ -56,7 +56,7 @@ Mat processVideo(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor, 
 	
 	do{
 		start = clock();
-		bgSubtractor->apply(frame, binary);
+		bgSubtractor->apply(frame, fgMask);
 		threshold(fgMask, binary, 128, 255, THRESH_BINARY);
 		morphologyEx(binary, binary, MORPH_CLOSE, closeStructuringElement);
 		morphologyEx(binary, binary, MORPH_OPEN, openStructuringElement);

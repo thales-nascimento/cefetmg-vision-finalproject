@@ -4,98 +4,15 @@
 \setfigdir{figs}
 
 \usepackage[cmex10]{amsmath}
-% A popular package from the American Mathematical Society that provides
-% many useful and powerful commands for dealing with mathematics. If using
-% it, be sure to load this package with the cmex10 option to ensure that
-% only type 1 fonts will utilized at all point sizes. Without this option,
-% it is possible that some math symbols, particularly those within
-% footnotes, will be rendered in bitmap form which will result in a
-% document that can not be IEEE Xplore compliant!
-%
-% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
-% thus preventing page breaks from occurring within multiline equations. Use:
 \interdisplaylinepenalty=2500
-% after loading amsmath to restore such page breaks as IEEEtran.cls normally
-% does. amsmath.sty is already installed on most LaTeX systems. The latest
-% version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
 \usepackage{amsthm}
 \newtheorem{definition}{Definition}
-
-
-
-
-
-% *** SPECIALIZED LIST PACKAGES ***
-%
-%\usepackage{algorithmic}
-% algorithmic.sty was written by Peter Williams and Rogerio Brito.
-% This package provides an algorithmic environment fo describing algorithms.
-% You can use the algorithmic environment in-text or within a figure
-% environment to provide for a floating algorithm. Do NOT use the algorithm
-% floating environment provided by algorithm.sty (by the same authors) or
-% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
-% algorithm float types and packages that provide these will not provide
-% correct IEEE style captions. The latest version and documentation of
-% algorithmic.sty can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
-% There is also a support site at:
-% http://algorithms.berlios.de/index.html
-% Also of interest may be the (relatively newer and more customizable)
-% algorithmicx.sty package by Szasz Janos:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
-
-
-
-
-% *** ALIGNMENT PACKAGES ***
-%
-%\usepackage{array}
-% Frank Mittelbach's and David Carlisle's array.sty patches and improves
-% the standard LaTeX2e array and tabular environments to provide better
-% appearance and additional user controls. As the default LaTeX2e table
-% generation code is lacking to the point of almost being broken with
-% respect to the quality of the end results, all users are strongly
-% advised to use an enhanced (at the very least that provided by array.sty)
-% set of table tools. array.sty is already installed on most systems. The
-% latest version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/required/tools/
-
-
-%\usepackage{mdwmath}
-%\usepackage{mdwtab}
-% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
-% especially mdwmath.sty and mdwtab.sty which are used to format equations
-% and tables, respectively. The MDWtools set is already installed on most
-% LaTeX systems. The lastest version and documentation is available at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
-
-% IEEEtran contains the IEEEeqnarray family of commands that can be used to
-% generate multiline equations as well as matrices, tables, etc., of high
-% quality.
-
-%\usepackage{eqparbox}
-% Also of notable interest is Scott Pakin's eqparbox package for creating
-% (automatically sized) equal width boxes - aka "natural width parboxes".
-% Available at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
-
-% *** PDF, URL AND HYPERLINK PACKAGES ***
-%
 \usepackage{hyperref}
 
-% *** Do not adjust lengths that control margins, column widths, etc. ***
-% *** Do not use packages that alter fonts (such as pslatex).         ***
-% There should be no need to do such things with IEEEtran.cls V1.6 and later.
-% (Unless specifically asked to do so by the journal or conference you plan
-% to submit to, of course. )
-% correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 \begin{document}
-%
-% paper title
-% can use linebreaks \\ within to get better formatting as desired
+
 \title{heatmap construction using background subtraction}
 
 %------------------------------------------------------------------------- 
@@ -105,11 +22,6 @@
 \finaltrue
 \newcommand{\jemsid}{99999}
 %------------------------------------------------------------------------- 
-
-% author names and affiliations
-% use a multiple column layout for up to two different
-% affiliations
-
 \iffinal
 	\author{%
     \IEEEauthorblockN{Nicolas A. Maduro}
@@ -128,32 +40,9 @@
   \author{Sibgrapi paper ID: \jemsid \\ }
 \fi
 
-% for over three affiliations, or if they all won't fit within the width
-% of the page, use this alternative format:
-% 
-%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
-%Homer Simpson\IEEEauthorrefmark{2},
-%James Kirk\IEEEauthorrefmark{3}, 
-%Montgomery Scott\IEEEauthorrefmark{3} and
-%Eldon Tyrell\IEEEauthorrefmark{4}}
-%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
-%Georgia Institute of Technology,
-%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
-%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
-%Email: homer@thesimpsons.com}
-%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
-%Telephone: (800) 555--1212, Fax: (888) 555--1212}
-%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
-
-
-% make the title area
 \maketitle
 
-
 \begin{abstract}
-\
-% DO NOT USE SPECIAL CHARACTERS, SYMBOLS, OR MATH IN YOUR TITLE OR ABSTRACT.
-%
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -167,14 +56,12 @@ Heatmap; Background subtraction;
 
 \section{Introduction}
 As análises de comportamento de clientes em lojas possuem grande valor para varejistas, empresas e organizações, já que podem ser utilizadas para aperfeiçoar suas estratégias de marketing, e ajudar os clientes nas tomadas de decisões. Algumas das análises realizadas por técnicas computacionais atualmente são feitas por meio de tecnologias que impõe algumas limitações, exigindo dispositivos acoplados ao cliente ou até mesmo identificações previamente definidas nos produtos de uma loja. Do mesmo modo, as ferramentas tecnológicas existentes ainda são pouco acessíveis, sendo compostas de soluções comerciais que exigem um investimento alto e consequentemente pouco exploradas.
-Este trabalho implementa um sistema baseado em visão computacional capaz de detectar clientes em lojas a fim de criar um mapa de calor para apoiar as análises de comportamento de clientes. Utilizando datasets disponvieis publicamente, fizemos uma prova de conceito para o sistema, e validamos os resutados.
+Este trabalho implementa um sistema baseado em visão computacional capaz de detectar clientes em lojas a fim de criar um mapa de calor para apoiar as análises de comportamento de clientes. In order to build the heatmap, we segmented the image using background subtraction, and used morphological transformations to remove noise and correct small failures on the objects.
 
 \subsection{Related work}
 O trabalho de Padua~\cite{padua2014sistema} desenvolve um sistema baseado em visão computacional para apoiar as análises tática e física no futsal. Em seu sistema foram utizadas as técnicas de subtração de fundo baseado em misturas gaussianas descritas em \cite{zivkovic2004improved} e operações morfológicas sobre imagens como descrito em \cite{haralick1987image}.
 
-\subsection{Technique overview}
-
-\section{Technical background}
+\section{Fundamentals}
 \subsection{Important concept}
 \begin{definition}[Image binarization]
 	Binarization is the conversion of a gray scale image to a two values image. There are many binarization formulas, we used the following:
@@ -208,107 +95,16 @@ The opening of image $B$ by structuring	element $K$ is denoted by $B \circ K$ an
 \begin{definition}[Closing]
 The closing of image $B$ by structuring	element $K$ is denoted by $B \circ K$ and is defined as: $$B \circ K =(B \oplus K) \ominus K.$$
 \end{definition}
-	
-%falar do background subtraction
-%falar das transformacoes morfologicas
 
 \section{Methodology}
 
-\subsection{Dataset}
-\subsection{}
-%explicar como implementamos, mostrar codigos ou pseudocodigos
-
-\subsection{Result display}
-%mostrar um heatmap feito
-
-\subimages[htb]{Technique overview}{overview}{%
-	\subimage[First step]{.31}{sibgrapi}%
-	\subimage[Second step]{.31}{sibgrapi}%
-	\subimage[Result]{.31}{sibgrapi}%
-}
-
-
-%==========================================
-\section{Experiments}
+\section{Experimental results}
 %descrever o experimento, falar que fizemos uma deteccao manual
 
-%==========================================
-\section{Results and Discussion}
-%
-We performed the above-mentioned experiments on the following type of data: \ldots{} For each data, we used the following tuning parameters of our method.
+\section{Concluding Remarks}
 
-
-\begin{table}
-\caption{Performances results: timings are expressed in milliseconds.}
-\label{tab:perfs}
-\centering
-\begin{tabular}{lr|rr|c}
-\multicolumn{1}{c}{\bf Data} &
-\multicolumn{1}{c|}{\bf Size} &
-\multicolumn{1}{c}{\bf Ours} &
-\multicolumn{1}{c|}{\bf Previous} &
-\multicolumn{1}{c}{\bf Gain} \\ \hline
-Data 1	&        50 	& 0.1 &     1 000	& x$10^3$ \\
-Data 2	&      100 	& 0.2 &     2 000	& x$10^3$ \\
-Data 3	&      500 	& 0.8 &   10 000	& x$10^3$ \\
-Data 4	&   1 000 	& 1.2 &   20 000	& x$10^3$ \\
-Data 5	&   5 000 	& 1.9 & 100 000	& x$10^4$ \\
-Data 6	& 10 000 	& 2.1 & 200 000	& x$10^4$
-\end{tabular}
-\end{table}
-%
-%------------------------------------------------------------------------- 
-\subsection{Performances}
-%
-We report on Table~\ref{tab:perfs} the performances of our technique on a computer at xxGhz with this graphic card.
-
-
-%------------------------------------------------------------------------- 
-\subsection{Quality}
-%
-As observed on \figref{quality}, our method achieve good results in this situation. 
-This can be measured by this criterion, and the results are reported on Table~\ref{tab:quality}.
-
-\begin{table}
-\caption{Quality measures: timings are expressed in milliseconds.}
-\label{tab:quality}
-\centering
-\begin{tabular}{l|r|r}
-\multicolumn{1}{c}{\bf Images} &
-\multicolumn{1}{c|}{\bf PSNR} &
-\multicolumn{1}{c}{\bf  MSE} \\ \hline
-Image 1	&  40.2	& 0.02 \\
-Image 2	&  30.9	& 1.02 \\
-Image 3 &  20.1 & 0.18 \\
-\end{tabular}
-\end{table}
-
-
-%------------------------------------------------------------------------- 
-\subsection{Limitation}
-%
-As mentioned in Section~\ref{sec:technique}, we expect our method to suit better this kind of data. On the other kind, this particularity does not fit into our formulation for this and that reason. Indeed, this can be observed in the results of \figref{quality}. 
-We plan to improve for that kind of data in future work. However, our technique performed well on this data, which does not respect our condition, since this other aspect reduced the negative impact of its characteristic.
-
-
-%==========================================
-\section{Conclusion}
-%
-In this paper, we introduced this technique and showed that it is particularly appropriate for that application. We obtained this and that improvements, and plan to extend this application in that direction in future work.
-
-
-
-%==========================================
-\iffinal
-% use section* for acknowledgement
 \section*{Acknowledgment}
-%
-The authors would like to thank this colleague and this financing institute.
-\fi
-
-
-
-%==========================================
+The authors would like to thank Flavio Cardeal for his course and support on this work.
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page

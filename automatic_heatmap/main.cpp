@@ -90,7 +90,6 @@ int main(int argc, char* argv[]){
 	}
 	
 	Ptr<BackgroundSubtractorMOG2> bgSubtractor = createBackgroundSubtractorMOG2();
-	printf("history: %d\n", bgSubtractor->getHistory());
 	
 	if(slowPlay){
 		namedWindow(ORIGINAL_WINDOW_NAME);
