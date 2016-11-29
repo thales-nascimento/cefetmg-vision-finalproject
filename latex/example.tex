@@ -50,9 +50,7 @@ Heatmap; Background subtraction;
 
 \end{IEEEkeywords}
 
-
 \IEEEpeerreviewmaketitle
-
 
 \section{Introduction}
 As análises de comportamento de clientes em lojas possuem grande valor para varejistas, empresas e organizações, já que podem ser utilizadas para aperfeiçoar suas estratégias de marketing, e ajudar os clientes nas tomadas de decisões. Algumas das análises realizadas por técnicas computacionais atualmente são feitas por meio de tecnologias que impõe algumas limitações, exigindo dispositivos acoplados ao cliente ou até mesmo identificações previamente definidas nos produtos de uma loja. Do mesmo modo, as ferramentas tecnológicas existentes ainda são pouco acessíveis, sendo compostas de soluções comerciais que exigem um investimento alto e consequentemente pouco exploradas.
@@ -80,23 +78,39 @@ O trabalho de Padua~\cite{padua2014sistema} desenvolve um sistema baseado em vis
 			e^{\frac{(y-\mu_{y})^{2}}{2\sigma^{2}}}.$$
 	
 \end{definition}
-\begin{definition}[Dilation]
+\begin{definition}[Morphological Dilation]
 	Dilation is the morphological transformation which combines two sets using vector addition of set elements. Let A and B be subsets of image carrier $\Omega$. The dilation is defined as: $$A \oplus B=\{c\in\Omega|c=a+b \text{ for some }a\in A\text{  and }b \in B\}.$$
 \end{definition}
 
-\begin{definition}[Erosion]
+\begin{definition}[Morphological Erosion]
 Erosion is the morphological dual to dilation.Let A and B be subsets of image carrier $\Omega$. The erosion is defined as: $$A \ominus B=\{x\in\Omega | x+b \in A \text{ for every }b\in B.$$
 \end{definition}
 
-\begin{definition}[Opening]
+\begin{definition}[Morphological Opening]
 The opening of image $B$ by structuring	element $K$ is denoted by $B \circ K$ and is defined as: $$B \circ K =(B \ominus K) \oplus K.$$
 \end{definition}
 
-\begin{definition}[Closing]
+\begin{definition}[Morphological Closing]
 The closing of image $B$ by structuring	element $K$ is denoted by $B \circ K$ and is defined as: $$B \circ K =(B \oplus K) \ominus K.$$
 \end{definition}
 
-\section{Methodology}
+\begin{definition}[Background subtraction]
+Background subtraction (BS) is a technique used for detecting moving objects in videos from static cameras. It calculates the foreground performing a subtraction between the current frame and a background model, which contains everything that can be considered as background.
+\end{definition}
+
+\section{Proposed Approach}
+The dataset used for the experiments was CAVIAR\footnote{http://homepages.inf.ed.ac.uk/rbf/CAVIARDATA1/}. In order to detect people in the scene we follow the \autoref{diagramablocos}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=12cm]{figs/diagrama_blocks}
+	\caption{pudim}
+	\label{diagramablocos}
+\end{figure}
+
+\subsection{Gaussian filter}
+	For each frame of the input video we use a Gaussain filter to reduce noise. This filter produces an output image blurrier than the original image, but as we are not interested on small details, this effect has no relevance.
+\subsection{Background subtraction}
+	With each filtered frame, the system perform a background subtraction in order to segment the image and detect people in the scene. While there are many BS implementations, our application demands an adaptive technique that is able to update its background model when the scene changes permanently, for example when a customer removes a product from the shelve. For that reason, we used the BS technique proposed by Zivkovic~\cite{zivkovic2004improved}, which is implemented in OpenCV~\cite{opencv_library}. The parameters used for the algorithm were experimentally defined, according to the dataset used in order to better segment people on scene.
 
 \section{Experimental results}
 %descrever o experimento, falar que fizemos uma deteccao manual

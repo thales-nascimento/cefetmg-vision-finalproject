@@ -38,4 +38,8 @@ R.~M. Haralick, S.~R. Sternberg, and X.~Zhuang, ``Image analysis using
   mathematical morphology,'' \emph{IEEE transactions on pattern analysis and
   machine intelligence}, no.~4, pp. 532--550, 1987.
 
+\bibitem{opencv_library}
+G.~Bradski, ``{The OpenCV Library},'' \emph{Dr. Dobb's Journal of Software
+  Tools}, 2000.
+
 \end{thebibliography}

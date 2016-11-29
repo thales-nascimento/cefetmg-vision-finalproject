@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2016.9.22)  29 NOV 2016 12:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2016.9.22)  29 NOV 2016 14:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**example
+**example.tex
 (./example.tex
 LaTeX2e <2014/05/01>
 Babel <3.9l> and hyphenation patterns for 3 languages loaded.
@@ -488,10 +488,28 @@ Missing character: There is no µ in font ptmr7t!
 Missing character: There is no Ã in font ptmr7t!
 Missing character: There is no ³ in font ptmr7t!
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 68.
+(Font)              <7> on input line 66.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 68.
- (./example.bbl)
+(Font)              <5> on input line 66.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 102.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 102.
+
+<figs/diagrama_blocks.png, id=49, 223.83624pt x 788.9475pt>
+File: figs/diagrama_blocks.png Graphic file (type png)
+
+<use figs/diagrama_blocks.png>
+Package pdftex.def Info: figs/diagrama_blocks.png used on input line 105.
+(pdftex.def)             Requested size: 96.86931pt x 341.43306pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+] (./example.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -503,27 +521,24 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 120.
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 120.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 134.
+[2 <./figs/diagrama_blocks.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 134.
  (./example.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 120.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 120.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 134.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 134.
 Package rerunfilecheck Info: File `example.out' has not changed.
-(rerunfilecheck)             Checksum: 2985ECA6E635A7DBA73E59E25711303D;421.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 120.
+(rerunfilecheck)             Checksum: 1D27305275C18A4ED72C1936A7382EDE;563.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 134.
  ) 
 Here is how much of TeX's memory you used:
- 7249 strings out of 494996
- 110814 string characters out of 6180489
- 202683 words of memory out of 5000000
- 10396 multiletter control sequences out of 15000+600000
- 34172 words of font info for 63 fonts, out of 8000000 for 9000
+ 7286 strings out of 494996
+ 111285 string characters out of 6180489
+ 203746 words of memory out of 5000000
+ 10415 multiletter control sequences out of 15000+600000
+ 38658 words of font info for 72 fonts, out of 8000000 for 9000
  19 hyphenation exceptions out of 8191
- 43i,9n,40p,710b,314s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,9n,40p,714b,316s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -537,10 +552,10 @@ cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
 ive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on example.pdf (1 page, 132662 bytes).
+Output written on example.pdf (2 pages, 154208 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 99 compressed objects within 1 object stream
- 20 named destinations out of 1000 (max. 500000)
- 65 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 141 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
+ 27 named destinations out of 1000 (max. 500000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 
