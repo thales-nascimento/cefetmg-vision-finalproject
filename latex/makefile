@@ -7,4 +7,4 @@ article:
 	pdflatex $(texname)
 
 clean:
-	rm $(texname).pdf $(texname).bbl $(texname).aux $(texname).blg $(texname).log $(texname).out
+	rm $(texname).pdf $(texname).bbl $(texname).aux $(texname).blg $(texname).log $(texname).out subimages.sty texput.log

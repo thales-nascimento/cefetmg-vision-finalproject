@@ -1,10 +1,15 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [2][-]{subsection.1.1}{Related work}{section.1}% 2
-\BOOKMARK [1][-]{section.2}{Fundamentals}{}% 3
-\BOOKMARK [2][-]{subsection.2.1}{Important concept}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Proposed Approach}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{Gaussian filter}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.2}{Background subtraction}{section.3}% 7
-\BOOKMARK [1][-]{section.4}{Experimental results}{}% 8
-\BOOKMARK [1][-]{section.5}{Concluding Remarks}{}% 9
-\BOOKMARK [1][-]{section*.2}{References}{}% 10
+\BOOKMARK [2][-]{subsection.1.1}{Contribution}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{Related work}{}% 3
+\BOOKMARK [1][-]{section.3}{Fundamentals}{}% 4
+\BOOKMARK [1][-]{section.4}{Proposed Approach}{}% 5
+\BOOKMARK [2][-]{subsection.4.1}{Gaussian filter}{section.4}% 6
+\BOOKMARK [2][-]{subsection.4.2}{Background subtraction}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.3}{Threshold}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.4}{Morphological opening and closing}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.5}{Accumulation}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.6}{Normalization and display}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.7}{Proof of concept}{section.4}% 12
+\BOOKMARK [1][-]{section.5}{Experimental results}{}% 13
+\BOOKMARK [1][-]{section.6}{Concluding Remarks}{}% 14
+\BOOKMARK [1][-]{section*.2}{References}{}% 15

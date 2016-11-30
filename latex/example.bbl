@@ -38,6 +38,32 @@ R.~M. Haralick, S.~R. Sternberg, and X.~Zhuang, ``Image analysis using
   mathematical morphology,'' \emph{IEEE transactions on pattern analysis and
   machine intelligence}, no.~4, pp. 532--550, 1987.
 
+\bibitem{liciotti2014shopper}
+D.~Liciotti, M.~Contigiani, E.~Frontoni, A.~Mancini, P.~Zingaretti, and
+  V.~Placidi, ``Shopper analytics: a customer activity recognition system using
+  a distributed rgb-d camera network,'' in \emph{International Workshop on
+  Video Analytics for Audience Measurement in Retail and Digital
+  Signage}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 2014, pp.
+  146--157.
+
+\bibitem{popa2013semantic}
+M.~C. Popa, L.~J. Rothkrantz, C.~Shan, T.~Gritti, and P.~Wiggers, ``Semantic
+  assessment of shopping behavior using trajectories, shopping related actions,
+  and context information,'' \emph{Pattern Recognition Letters}, vol.~34,
+  no.~7, pp. 809--819, 2013.
+
+\bibitem{breitenstein2011online}
+M.~D. Breitenstein, F.~Reichlin, B.~Leibe, E.~Koller-Meier, and L.~Van~Gool,
+  ``Online multiperson tracking-by-detection from a single, uncalibrated
+  camera,'' \emph{IEEE transactions on pattern analysis and machine
+  intelligence}, vol.~33, no.~9, pp. 1820--1833, 2011.
+
+\bibitem{haritaoglu2001detection}
+I.~Haritaoglu and M.~Flickner, ``Detection and tracking of shopping groups in
+  stores,'' in \emph{Computer Vision and Pattern Recognition, 2001. CVPR 2001.
+  Proceedings of the 2001 IEEE Computer Society Conference on}, vol.~1.\hskip
+  1em plus 0.5em minus 0.4em\relax IEEE, 2001, pp. I--431.
+
 \bibitem{opencv_library}
 G.~Bradski, ``{The OpenCV Library},'' \emph{Dr. Dobb's Journal of Software
   Tools}, 2000.

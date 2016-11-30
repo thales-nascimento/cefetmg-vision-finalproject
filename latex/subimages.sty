@@ -44,17 +44,6 @@
 \RequirePackage{ifpdf}
 \RequirePackage[caption=false,font=footnotesize]{subfig}
 
-
-\ifpdf
- \RequirePackage[pdftex]{graphicx} \pdfcompresslevel=9
- \DeclareGraphicsExtensions{.pdf,.png}
- \newcommand{\ext}{png}
-\else
- \RequirePackage{graphicx}
- \DeclareGraphicsExtensions{.eps}
- \newcommand{\ext}{eps}
-\fi
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \providecommand{\figurename}{Fig.}

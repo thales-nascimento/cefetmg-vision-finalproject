@@ -14,28 +14,28 @@ Mat processVideoSilently(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubt
 	unsigned maxValue = 0;
 	int i = 0;
 	
-        capture->read(frame);
+	capture->read(frame);
 	accumulator = Mat::zeros(frame.size(), CV_32SC1);
 	
-        do{
-                bgSubtractor->apply(frame, fgMask);
+	do{
+		bgSubtractor->apply(frame, fgMask);
 		threshold(fgMask, binary, 128, 255, THRESH_BINARY);
 		morphologyEx(binary, binary, MORPH_OPEN, openStructuringElement);
 		morphologyEx(binary, binary, MORPH_CLOSE, closeStructuringElement);
-                for(int row=0; row < accumulator.rows; ++row){
+		for(int row=0; row < accumulator.rows; ++row){
 			uchar *f = binary.ptr(row);
 			unsigned *a = (unsigned*)accumulator.ptr(row);
-			for(int col = 0; col < accumulator.cols; ++col){
-				a[col] += f[col];
-				maxValue = max(maxValue, a[col]);
-                        }
-
+		for(int col = 0; col < accumulator.cols; ++col){
+			a[col] += f[col];
+			maxValue = max(maxValue, a[col]);
 		}
-                printf("\r%d", ++i);
-                fflush(stdout);
-                printf("\r      ");
+	}
+	printf("\r%d", ++i);
+	fflush(stdout);
+	printf("\r	  ");
 	} while(capture->grab() && capture->retrieve(frame));
-        accumulator.convertTo(heatmap, CV_32FC1, 1.0/maxValue);
+	
+	accumulator.convertTo(heatmap, CV_32FC1, 1.0/maxValue);
 	return heatmap;
 
 }
