@@ -53,9 +53,10 @@
 	\IEEEpeerreviewmaketitle
 	
 	\section{Introduction}
-	As análises de comportamento de clientes em lojas possuem grande valor para varejistas, empresas e organizações, já que podem ser utilizadas para aperfeiçoar suas estratégias de marketing, e ajudar os clientes nas tomadas de decisões. Algumas das análises realizadas por técnicas computacionais atualmente são feitas por meio de tecnologias que impõe algumas limitações, exigindo dispositivos acoplados ao cliente ou até mesmo identificações previamente definidas nos produtos de uma loja. Do mesmo modo, as ferramentas tecnológicas existentes ainda são pouco acessíveis, sendo compostas de soluções comerciais que exigem um investimento alto e consequentemente pouco exploradas.
+	The analysis of behavior of clients in shops are of great value to shop owners and organizations, as it can be used to improve marketing strategies and use of available physical space. Some analysis of this kind made using computational tools currently impose some restrictions, for exam
+	\subsection{Validation of results}paranoidple requiring the client to use an RFID tag or even visual identifications in the products. Other tools are expensive to implement and therefore not well explored.
 	
-	Este trabalho implementa um sistema baseado em visão computacional capaz de detectar clientes em lojas a fim de criar um mapa de calor para apoiar as análises de comportamento de clientes. In order to build the heatmap, we segmented the image using background subtraction, and used morphological transformations to remove noise and correct small failures on the objects.
+	This work implements a computer vision based system able to detect clients in shops in order to create heatmaps and help the client behavior analysis. We first filter the image using a Gaussian filter, then we segment the image using background subtraction, then we use morphological transformation to improve the foreground model and finally we accumulate the result to generate a heatmap.
 	
 	The remainder of this work is as follows: The second section presents the related work. The third section shows definitions of important concepts used in this work. The fourth section shows the proposed approach to solve the problem. The next section exposes the experimental results and the last section finishes with concluding remarks.
 	
@@ -175,13 +176,22 @@
 	\end{figure}
 	
 	
-	\subsection{Proof of concept}
-	In order to verify the correctness of the algorithm, it was designed an manual heatmap builder. For each frame, the user has to mark the persons on the frame. At the end the application generates a heatmap based on the user marks.
-	
-	
 	\section{Experimental results}
-	%descrever o experimento, falar que fizemos uma deteccao manual
-	
+	\subsection{Validation of results}
+	In order to verify the correctness of the algorithm, it was designed an manual heatmap builder. For each frame, the user has to mark the persons on the frame, and the application generates a heatmap based on the user marks on all frames. The process can be seen in \autoref{manualshow}.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{figs/manualshow}
+		\caption{User interface of the application used to generate a manual heatmap. On the right is the current heatmap, on left are the frame intensity on the red channel, and the user overlay on blue channel}
+		\label{manualshow}
+	\end{figure}
+	A comparation of the manual and automatic generated result is show in \autoref{comparacaoheatmaps}. We can see that there are differences, but the overall result is close, which validate our algorithm.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{figs/comparacaoheatmaps}
+		\caption{Comparation of the manual(left) and automatic(right) heatmaps}
+		\label{comparacaoheatmaps}
+	\end{figure}
 	\section{Concluding Remarks}
 	
 	\section*{Acknowledgment}
