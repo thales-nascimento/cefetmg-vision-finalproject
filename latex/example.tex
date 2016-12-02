@@ -55,7 +55,7 @@
 	\section{Introduction}
 	The analysis of behavior of clients in shops are of great value to shop owners and organizations, as it can be used to improve marketing strategies and use of available physical space. Some analysis of this kind made using computational tools currently impose some restrictions, for example requiring the client to use an RFID tag or even visual identifications in the products. Other tools are expensive to implement and therefore not well explored.
 	
-	This work implements a computer vision based system able to detect clients in shops in order to create heatmaps and help the client behavior analysis. We first filter the image using a Gaussian filter, then segment the image using background subtraction, then we use morphological transformation to improve the foreground model and finally accumulate the result to generate a heatmap.
+	This work implements a computer vision based system able to detect clients in shops in order to create heatmaps and help the client behavior analysis. We first filter the image using a Gaussian filter, then segment the image using background subtraction, producing a foreground that will be improved by morphological operations, and finally we accumulate the result to generate a heatmap.
 	
 	The remainder of this work is as follows: The second section presents the related work. The third section shows definitions of important concepts used in this work. The fourth section shows the proposed approach to solve the problem. The next section exposes the experimental results and the last section finishes with concluding remarks.
 	
@@ -67,13 +67,16 @@
 	
 	Liciotti et al~\cite{liciotti2014shopper} presents an integrated system consisted of a RGB-D camera and software able to monitor shoppers behavior and their interactions with products in shelves. Their system univocally identifies people within a store, and by using depth information it determines the kind of action the shopper is taking on the products, either touching, picking up or putting back.
 	
-	Popa et al.~\cite{popa2013semantic} approaches the possibility of automatic understanding of customers’s shopping behavior. From the video recordings, they extract features related to the spatio-temporal behavior of customers, like dynamics and time spent in each region of interest (ROI) and customer-products interaction patterns. Then they analyze the shopping sequences using a Hidden Markov Model (HMM). They got accurately classify trajectories (93\%), discriminate between different shopping related actions (91.6\%), and recognize shopping behavioral types by means of the proposed reasoning model in 95\% of the cases.
-	
-	Breitenstein~\cite{breitenstein2011online} proposes an approach for multi-person tracking in a particle filtering framework. It combines online trained, instance-specific classifiers with generic object category knowledge, resulting in a robust multi-person tracking. The algorithm detects and tracks a large number of dynamically moving persons in complex scenes with occlusions, without relying in background models or camera calibration, using only information from the past, hence imposing very few restrictions and is suitable for online applications.
+	Popa et al.~\cite{popa2013semantic} approaches the possibility of automatic understanding of customers’s shopping behavior. From the video recordings, they extract features related to the spatio-temporal behavior of customers, like dynamics and time spent in each region of interest and customer-products interaction patterns. Then they analyze the shopping sequences using a Hidden Markov Model. They got accurately classify trajectories (93\%), discriminate between different shopping related actions (91.6\%), and recognize shopping behavioral types by means of the proposed reasoning model in 95\% of the cases.
 	
 	Haritaoglu and Myron~\cite{haritaoglu2001detection} create a monocular real-time computer vision system that identifies shopping groups by detecting and tracking multiple people as they wait in a checkout line or service counter. The system segments each frame into foreground regions which contains multiple people. Those are further segmented into individuals using a temporal segmentation and motion cues. Once a person is detected, an appearance model based on color, edge density and mean-shift tracker is used to recover the person’s trajectory. People are grouped together as a shopping group by analyzing interbody distances. The system also monitors cashier’s activities to determine when shopping transactions start and end.
 	
+	Breitenstein~\cite{breitenstein2011online} proposes an approach for multi-person tracking in a particle filtering framework. It combines online trained, instance-specific classifiers with generic object category knowledge, resulting in a robust multi-person tracking. The algorithm detects and tracks a large number of dynamically moving persons in complex scenes with occlusions, without relying in background models or camera calibration, using only information from the past, hence imposing very few restrictions and is suitable for online applications.
+	
+	All the above mentioned works, except Breitenstein's, use some kind of foreground detection to segment the input image. The technique is well studied and for that reason we used the same approach in this work.
+	
 	\section{Fundamentals}
+	In this section we present some important concepts used in our algorithm.
 	\begin{definition}[Image binarization]
 		Binarization is the conversion of a gray scale image to a two values image. There are many binarization formulas, we used the following:
 		\[
@@ -112,7 +115,7 @@
 	\end{definition}
 	
 	\section{Proposed Approach}
-	The dataset used for the experiments was CAVIAR\footnote{http://homepages.inf.ed.ac.uk/rbf/CAVIARDATA1/}. In order to detect people in the scene we follow scheme described in \autoref{diagramablocos}.
+	In order to detect people in the scene we follow scheme described in \autoref{diagramablocos}.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[height=12cm]{diagrama_blocks}
@@ -122,7 +125,7 @@
 	
 	
 	\subsection{Gaussian filter}
-	For each frame of the input video we use a Gaussain filter to reduce noise. This filter produces an output image blurrier than the original image, as exemplified on \autoref{filterexample}, but as we are not interested on small details, this effect has no relevance.
+	For each frame of the input video we use a Gaussain filter to reduce noise. This filter produces an output image blurrier than the original image, as exemplified on \autoref{filterexample}. As we are not interested on small details, this effect has no relevance.
 	\begin{figure}[H]
 		\includegraphics[width=0.5\textwidth]{filterexample}
 		\centering
@@ -147,7 +150,7 @@
 	\end{figure}
 	
 	\subsection{Morphological opening and closing}
-	In order to improve the detection capability, we apply morphological opening and closing\cite{haralick1987image} in the output of the threshold step. The first is used to remove small noise from the image, while the second is used to remove small holes on the detected objects. A comparation of a foreground before and after the application is show in \autoref{morphologicalexample};
+	In order to improve the foreground representation, we apply morphological opening and closing\cite{haralick1987image} in the output of the threshold step. The first is used to remove small noise from the image, while the second is used to remove small holes on the detected objects. A comparative of a foreground before and after the application is show in \autoref{morphologicalexample};
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.5\textwidth]{figs/morphological}
@@ -175,7 +178,6 @@
 	
 	
 	\section{Experimental results}
-	\subsection{Validation of results}
 	In order to verify the correctness of the algorithm, it was designed an manual heatmap builder. For each frame, the user has to mark the persons on the frame, and the application generates a heatmap based on the user marks on all frames. The process can be seen in \autoref{manualshow}.
 	\begin{figure}[H]
 		\centering
@@ -190,6 +192,7 @@
 		\caption{Comparation of the manual(left) and automatic(right) heatmaps}
 		\label{comparacaoheatmaps}
 	\end{figure}
+	The dataset used for the experiments was CAVIAR\footnote{http://homepages.inf.ed.ac.uk/rbf/CAVIARDATA1/}.
 	
 	
 	\section{Concluding Remarks}
