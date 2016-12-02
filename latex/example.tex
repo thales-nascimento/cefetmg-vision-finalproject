@@ -179,22 +179,26 @@
 	
 	
 	\section{Experimental results}
-	In order to verify the correctness of the algorithm, it was designed an manual heatmap builder. For each frame, the user has to mark the persons on the frame, and the application generates a heatmap based on the user marks on all frames. The process can be seen in \autoref{manualshow}.
+	In order to verify the correctness of the algorithm, it was designed an manual heatmap builder. For each frame, the user has to mark the persons on the frame, and the application generates a heatmap based on the user marks on all frames. The process can be seen in \autoref{manualshow}. The dataset used for the experiments was CAVIAR\footnote{http://homepages.inf.ed.ac.uk/rbf/CAVIARDATA1/}.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.5\textwidth]{figs/manualshow}
 		\caption{User interface of the application used to generate a manual heatmap. On the right is the current heatmap, on left are the frame intensity on the red channel, and the user overlay on blue channel}
 		\label{manualshow}
 	\end{figure}
-	A comparation of the manual and automatic generated result is show in \autoref{comparacaoheatmaps}. We can see that there are differences, but the overall result is close, which validate our algorithm.
+	A comparation of the manual and automatic generated result is show in \autoref{comparacaoheatmaps}. \autoref{redondo} shows the same comparison, but with a base video from a fish eye camera. We can see that there are differences, but the overall result is close, which validate our algorithm.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.5\textwidth]{figs/comparacaoheatmaps}
 		\caption{Comparation of the manual(left) and automatic(right) heatmaps}
 		\label{comparacaoheatmaps}
 	\end{figure}
-	The dataset used for the experiments was CAVIAR\footnote{http://homepages.inf.ed.ac.uk/rbf/CAVIARDATA1/}.
-	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\textwidth]{figs/redondo}
+		\caption{Comparation of the manual(left) and automatic(right) heatmaps created from a fish eye camera video}
+		\label{redondo}
+	\end{figure}
 	
 	\section{Concluding Remarks}
 	The algorithm produces results coherent to the ground truth, in real time. With this work we were able to obtain a metric important to the analysis of videos of customers on shops. This is the first step, to construct a complete, automatic system, capable of not only detecting, but also tracking and identifying interactions of clients, and then generate important statistics.

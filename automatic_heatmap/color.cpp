@@ -13,7 +13,7 @@ Mat applyColor(Mat m,int type){
 		if(type==JET){
 			const float alpha = 3.94f;
 			
-			if(i<0.016f){
+			if(i<0.02f){
 				r=0;
 				b=0;
 				g=0;
