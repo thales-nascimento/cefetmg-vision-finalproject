@@ -58,8 +58,8 @@ Mat processVideo(VideoCapture *capture, Ptr<BackgroundSubtractor> bgSubtractor, 
 		start = clock();
 		bgSubtractor->apply(frame, fgMask);
 		threshold(fgMask, binary, 128, 255, THRESH_BINARY);
-		morphologyEx(binary, binary, MORPH_CLOSE, closeStructuringElement);
 		morphologyEx(binary, binary, MORPH_OPEN, openStructuringElement);
+		morphologyEx(binary, binary, MORPH_CLOSE, closeStructuringElement);
 		
 		for(int row=0; row < accumulator.rows; ++row){
 			uchar *f = binary.ptr(row);
